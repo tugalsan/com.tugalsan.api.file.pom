@@ -52,4 +52,10 @@ public class TS_FilePom {
     public static TS_FilePom of(String artifactId) {
         return new TS_FilePom(TS_FilePomPathUtils.ofArtifactId(artifactId).orElse(null));
     }
+
+    @Override
+    public String toString() {
+        return d.className + "{" + "isLoadedSuccessfully=" + isLoadedSuccessfully + ", pom_xml=" + pom_xml + ", articactId=" + articactId + ", groupId=" + groupId + ", dependencies=" + dependencies + '}';
+    }
+
 }
