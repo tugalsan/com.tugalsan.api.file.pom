@@ -2,6 +2,7 @@ package com.tugalsan.api.file.pom.server;
 
 import com.tugalsan.api.file.server.TS_FileUtils;
 import com.tugalsan.api.log.server.TS_Log;
+import com.tugalsan.api.stream.client.TGS_StreamUtils;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -28,12 +29,13 @@ public class TS_FilePom {
             isLoadedSuccessfully = false;
             return;
         }
-        dependencies = TS_FilePomParseUtils.deps(pom_xml).orElse(null);
-        if (dependencies == null) {
-            d.ce("dep", "ERROR: dependencies == null @ " + pom_xml);
+        var dependenciesStr = TS_FilePomParseUtils.deps(pom_xml).orElse(null);
+        if (dependenciesStr == null) {
+            d.ce("dep", "ERROR: dependenciesStr == null @ " + pom_xml);
             isLoadedSuccessfully = false;
             return;
         }
+        dependencies = TGS_StreamUtils.toLst(dependenciesStr.stream().map(s -> TS_FilePom.of(articactId)));
         isLoadedSuccessfully = true;
     }
 
@@ -41,7 +43,7 @@ public class TS_FilePom {
     public Path pom_xml;
     public String articactId;
     public String groupId;
-    public List<String> dependencies;
+    public List<TS_FilePom> dependencies;
 
     public static TS_FilePom of(Path pom_xml) {
         return new TS_FilePom(pom_xml);
