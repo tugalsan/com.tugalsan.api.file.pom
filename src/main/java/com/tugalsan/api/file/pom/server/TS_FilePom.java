@@ -9,7 +9,7 @@ public class TS_FilePom {
 
     final private static TS_Log d = TS_Log.of(TS_FilePom.class);
 
-    public TS_FilePom(Path pom_xml) {
+    private TS_FilePom(Path pom_xml) {
         this.pom_xml = pom_xml;
         if (!TS_FileUtils.isExistFile(pom_xml)) {
             d.ce("dep", "ERROR: pom_xml not exists @ " + pom_xml);
@@ -42,4 +42,8 @@ public class TS_FilePom {
     public String articactId;
     public String groupId;
     public List<String> dependencies;
+
+    public static TS_FilePom of(Path pom_xml) {
+        return new TS_FilePom(pom_xml);
+    }
 }
