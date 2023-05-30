@@ -16,19 +16,19 @@ public class TS_FilePom {
             isLoadedSuccessfully = false;
             return;
         }
-        this.articactId = TS_FilePomUtils.articactId(pom_xml).orElse(null);
+        this.articactId = TS_FilePomParseUtils.articactId(pom_xml).orElse(null);
         if (articactId == null) {
             d.ce("dep", "ERROR: articactId == null @ " + pom_xml);
             isLoadedSuccessfully = false;
             return;
         }
-        this.groupId = TS_FilePomUtils.groupId(pom_xml).orElse(null);
+        this.groupId = TS_FilePomParseUtils.groupId(pom_xml).orElse(null);
         if (groupId == null) {
             d.ce("dep", "ERROR: groupId == null @ " + pom_xml);
             isLoadedSuccessfully = false;
             return;
         }
-        dependencies = TS_FilePomUtils.deps(pom_xml).orElse(null);
+        dependencies = TS_FilePomParseUtils.deps(pom_xml).orElse(null);
         if (dependencies == null) {
             d.ce("dep", "ERROR: dependencies == null @ " + pom_xml);
             isLoadedSuccessfully = false;
@@ -45,5 +45,9 @@ public class TS_FilePom {
 
     public static TS_FilePom of(Path pom_xml) {
         return new TS_FilePom(pom_xml);
+    }
+
+    public static TS_FilePom of(String artifactId) {
+        return new TS_FilePom(TS_FilePomPathUtils.ofArtifactId(artifactId).orElse(null));
     }
 }

@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class TS_FilePomUtils {
+public class TS_FilePomParseUtils {
 
-    final private static TS_Log d = TS_Log.of(false, TS_FilePomUtils.class);
+    final private static TS_Log d = TS_Log.of(false, TS_FilePomParseUtils.class);
 
     public static Optional<String> groupId(Path prjPom) {
         var doc = TS_FileXmlUtils.of(prjPom);
