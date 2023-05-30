@@ -11,6 +11,20 @@ public class TS_FilePomUtils {
 
     final private static TS_Log d = TS_Log.of(false, TS_FilePomUtils.class);
 
+    public static Optional<String> groupId(Path prjPom) {
+        var doc = TS_FileXmlUtils.of(prjPom);
+        var root = TS_FileXmlUtils.getNodeRoot(doc);
+        return TS_FileXmlUtils.getChilderenNode(root, "groupId")
+                .map(groupId -> groupId.getNodeName());
+    }
+
+    public static Optional<String> articactId(Path prjPom) {
+        var doc = TS_FileXmlUtils.of(prjPom);
+        var root = TS_FileXmlUtils.getNodeRoot(doc);
+        return TS_FileXmlUtils.getChilderenNode(root, "artifactId")
+                .map(groupId -> groupId.getNodeName());
+    }
+
     public static Optional<List<String>> deps(Path prjPom) {
         var doc = TS_FileXmlUtils.of(prjPom);
         var root = TS_FileXmlUtils.getNodeRoot(doc);
