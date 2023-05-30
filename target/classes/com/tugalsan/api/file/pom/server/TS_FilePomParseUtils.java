@@ -38,7 +38,7 @@ public class TS_FilePomParseUtils {
         }
         var depCount = TS_FileXmlUtils.getChilderenLstExceptText(depedencies).stream()
                 .filter(node -> node.getNodeName().equals("dependency")).count();
-        d.cr("dep", "depCount", depCount);
+        d.ci("dep", "depCount", depCount);
         List<String> deps_com_tugalsan = new ArrayList();
         TS_FileXmlUtils.getChilderenLstExceptText(depedencies).stream()
                 .filter(node -> node.getNodeName().equals("dependency"))
