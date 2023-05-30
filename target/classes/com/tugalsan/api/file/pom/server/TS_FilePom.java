@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.TreeSet;
 
-public class TS_FilePom {
+public class TS_FilePom implements Comparable {
 
     final private static TS_Log d = TS_Log.of(TS_FilePom.class);
 
@@ -66,6 +66,11 @@ public class TS_FilePom {
     @Override
     public String toString() {
         return d.className + "{" + "isLoadedSuccessfully=" + isLoadedSuccessfully + ", pom_xml=" + pom_xml + ", articactId=" + articactId + ", groupId=" + groupId + ", dependencies=" + dependencies + '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return String.valueOf(groupId + articactId).compareTo(String.valueOf(((TS_FilePom) o).groupId + ((TS_FilePom) o).articactId));
     }
 
 }
