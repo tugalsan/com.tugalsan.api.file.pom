@@ -25,7 +25,7 @@ public class TS_FilePomPathUtils {
         return codes().resolve(strGroupId());
     }
 
-    public static Optional<Path> ofArtifactId(String artifactId) {
+    public static Optional<Path> ofByArtifactId(String artifactId) {
         if (!artifactId.startsWith(strGroupId())) {
             return Optional.empty();
         }
@@ -35,6 +35,7 @@ public class TS_FilePomPathUtils {
             return Optional.empty();
         }
         var subDirName = slice.substring(0, idx_dot);
-        return Optional.of(ofGroupId().resolve(subDirName).resolve(artifactId));
+        var pom_xml = ofGroupId().resolve(subDirName).resolve(artifactId).resolve("pom.xml");
+        return Optional.of(pom_xml);
     }
 }

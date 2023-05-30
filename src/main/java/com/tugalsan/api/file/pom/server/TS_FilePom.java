@@ -50,7 +50,7 @@ public class TS_FilePom {
     }
 
     public static TS_FilePom of(String artifactId) {
-        return new TS_FilePom(TS_FilePomPathUtils.ofArtifactId(artifactId).orElse(null));
+        return new TS_FilePom(TS_FilePomPathUtils.ofByArtifactId(artifactId).orElse(null));
     }
 
     @Override
