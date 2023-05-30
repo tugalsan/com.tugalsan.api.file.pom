@@ -5,6 +5,7 @@ import com.tugalsan.api.log.server.TS_Log;
 import com.tugalsan.api.stream.client.TGS_StreamUtils;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.TreeSet;
 
 public class TS_FilePom {
 
@@ -36,6 +37,7 @@ public class TS_FilePom {
             return;
         }
         dependencies = TGS_StreamUtils.toLst(dependenciesStr.stream().map(s -> TS_FilePom.of(s)));
+        fillDepFullFrom(this);
         isLoadedSuccessfully = true;
     }
 
@@ -44,6 +46,14 @@ public class TS_FilePom {
     public String articactId;
     public String groupId;
     public List<TS_FilePom> dependencies;
+    public TreeSet<TS_FilePom> dependenciesFull = new TreeSet();
+
+    private void fillDepFullFrom(TS_FilePom pom) {
+        pom.dependencies.stream().forEach(dep -> {
+            dependenciesFull.add(dep);
+            fillDepFullFrom(dep);
+        });
+    }
 
     public static TS_FilePom of(Path pom_xml) {
         return new TS_FilePom(pom_xml);
