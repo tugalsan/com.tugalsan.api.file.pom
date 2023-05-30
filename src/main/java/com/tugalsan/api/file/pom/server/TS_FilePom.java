@@ -35,7 +35,7 @@ public class TS_FilePom {
             isLoadedSuccessfully = false;
             return;
         }
-        dependencies = TGS_StreamUtils.toLst(dependenciesStr.stream().map(s -> TS_FilePom.of(articactId)));
+        dependencies = TGS_StreamUtils.toLst(dependenciesStr.stream().map(s -> TS_FilePom.of(s)));
         isLoadedSuccessfully = true;
     }
 
