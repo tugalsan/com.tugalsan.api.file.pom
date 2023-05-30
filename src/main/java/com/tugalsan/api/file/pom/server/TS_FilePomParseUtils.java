@@ -15,14 +15,14 @@ public class TS_FilePomParseUtils {
         var doc = TS_FileXmlUtils.of(prjPom);
         var root = TS_FileXmlUtils.getNodeRoot(doc);
         return TS_FileXmlUtils.getChilderenNode(root, "groupId")
-                .map(groupId -> groupId.getNodeName());
+                .map(node -> TS_FileXmlUtils.getText(node));
     }
 
     public static Optional<String> articactId(Path prjPom) {
         var doc = TS_FileXmlUtils.of(prjPom);
         var root = TS_FileXmlUtils.getNodeRoot(doc);
         return TS_FileXmlUtils.getChilderenNode(root, "artifactId")
-                .map(groupId -> groupId.getNodeName());
+                .map(node -> TS_FileXmlUtils.getText(node));
     }
 
     public static Optional<List<String>> deps(Path prjPom) {
