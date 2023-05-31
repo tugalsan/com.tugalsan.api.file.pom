@@ -60,7 +60,7 @@ public class TS_FilePom implements Comparable {
     }
 
     public static TS_FilePom of(String artifactId) {
-        return new TS_FilePom(TS_FilePomPathUtils.ofByArtifactId(artifactId).orElse(null));
+        return new TS_FilePom(TS_FilePomPathUtils.projectPomByArtifactId(artifactId).orElse(null));
     }
 
     @Override
