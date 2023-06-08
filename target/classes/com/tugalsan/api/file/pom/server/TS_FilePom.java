@@ -49,7 +49,16 @@ public class TS_FilePom {
             isLoadedSuccessfully = false;
             return;
         }
+        dependenciesThirdParty = TS_FilePomParseUtils.depsThirdParty(pom_xml).orElse(null);
+        if (dependenciesThirdParty == null) {
+            error = "ERROR: dependenciesStr == null @ " + pom_xml;
+            d.ce("dep", error);
+            isLoadedSuccessfully = false;
+            return;
+        }
         dependencies = TGS_StreamUtils.toLst(dependenciesStr.stream().map(s -> TS_FilePom.of(s).orElse(new TS_FilePom(s))));
+        dependenciesFull = new ArrayList();
+        dependenciesThirdPartyFull = new ArrayList();
         fillDepFullFrom(this);
         error = null;
         isLoadedSuccessfully = true;
@@ -60,9 +69,17 @@ public class TS_FilePom {
     public String articactId;
     public String groupId;
     public List<TS_FilePom> dependencies;
+    public List<String> dependenciesThirdParty;
+    public List<String> dependenciesThirdPartyFull;
     public List<TS_FilePom> dependenciesFull;
 
     private void fillDepFullFrom(TS_FilePom pom) {
+        pom.dependenciesThirdParty.stream().forEach(dep -> {
+            if (dependenciesThirdPartyFull.stream().filter(df -> df.equals(dep)).findAny().isPresent()) {
+                return;
+            }
+            dependenciesThirdPartyFull.add(dep);
+        });
         pom.dependencies.stream().forEach(dep -> {
             if (dependenciesFull.stream().filter(df -> df.equals(dep)).findAny().isPresent()) {
                 return;
