@@ -6,7 +6,7 @@ import java.util.List;
 
 public class TS_FilePomConfig {
 
-    private TS_FilePomConfig(Path mavenCodes, Path mavenRepository, Path mavenRepositoryProjects, List<String> projectGroupIds) {
+    private TS_FilePomConfig(Path mavenCodes, Path mavenRepository, Path mavenRepositoryProjects, List<CharSequence> projectGroupIds) {
         this.mavenCodes = mavenCodes;
         this.mavenRepository = mavenRepository;
         this.mavenRepositoryProjects = mavenRepositoryProjects;
@@ -15,9 +15,9 @@ public class TS_FilePomConfig {
     public Path mavenCodes;
     public Path mavenRepository;
     public Path mavenRepositoryProjects;
-    public List<String> projectGroupIds;
+    public List<CharSequence> projectGroupIds;
 
-    public static TS_FilePomConfig of(Path mavenCodes, Path mavenRepository, Path mavenRepositoryProjects, String... projectGroupIds) {
+    public static TS_FilePomConfig of(Path mavenCodes, Path mavenRepository, Path mavenRepositoryProjects, CharSequence... projectGroupIds) {
         return new TS_FilePomConfig(mavenCodes, mavenRepository, mavenRepositoryProjects, TGS_ListUtils.of(projectGroupIds));
     }
 
