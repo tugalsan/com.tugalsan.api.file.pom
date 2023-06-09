@@ -1,4 +1,8 @@
+com\tugalsan\api\file\pom\server\TS_FilePomConfig.class
+com\tugalsan\api\file\pom\server\TS_FilePomUtils.class
+com\tugalsan\api\file\pom\server\dep\TS_FilePomDeprecated.class
 com\tugalsan\api\file\pom\server\TS_FilePom.class
-com\tugalsan\api\file\pom\server\TS_FilePomPathUtils.class
+com\tugalsan\api\file\pom\server\TS_FilePomDependecy.class
 module-info.class
-com\tugalsan\api\file\pom\server\TS_FilePomParseUtils.class
+com\tugalsan\api\file\pom\server\dep\TS_FilePomDeprecatedPathUtils.class
+com\tugalsan\api\file\pom\server\dep\TS_FilePomDeprecatedParseUtils.class
