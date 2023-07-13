@@ -1,7 +1,9 @@
 package com.tugalsan.api.file.pom.server;
 
 import com.tugalsan.api.list.client.TGS_ListUtils;
+import com.tugalsan.api.tuple.client.TGS_Tuple2;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TS_FilePomConfig {
@@ -16,6 +18,10 @@ public class TS_FilePomConfig {
     public Path mavenRepository;
     public Path mavenRepositoryProjects;
     public List<CharSequence> projectGroupIds;
+    private List<TGS_Tuple2<TS_FilePomDependecy, Path>> projects = new ArrayList();
+    public List<TGS_Tuple2<TS_FilePomDependecy, Path>> projects(){
+        
+    }
 
     public static TS_FilePomConfig of(Path mavenCodes, Path mavenRepository, Path mavenRepositoryProjects, CharSequence... projectGroupIds) {
         return new TS_FilePomConfig(mavenCodes, mavenRepository, mavenRepositoryProjects, TGS_ListUtils.of(projectGroupIds));
